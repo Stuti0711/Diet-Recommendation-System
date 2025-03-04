@@ -145,28 +145,49 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
+import streamlit as st
+
+# Custom CSS for centering the button
 st.markdown(
     """
-    <div style="
-        background-color: #FFDDC1; 
-        color: #D84315; 
-        padding: 10px; 
+    <style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px; /* Adjust height as needed */
+        margin-top: 10px;
+    }
+    .stButton>button {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
         border-radius: 10px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;">
-        🤖 Your Personalized AI Diet Planner
-    </div>
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
 
+# Header Section
+st.markdown(
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '</div>',
+    unsafe_allow_html=True
+)
 
-
-
-
-
+# Centered Button Section
+st.markdown('<div class="container">', unsafe_allow_html=True)
 if st.button("Click here"):
+    st.success("Button Clicked!")
+st.markdown('</div>', unsafe_allow_html=True)
+
+
+
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     else:
