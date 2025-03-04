@@ -144,8 +144,28 @@ def get_gemini_recommendation(prompt):
     response = model.generate_content(prompt)
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
-
 # 🟢 AI-Powered Meal Plan Button
+st.markdown(
+    """
+    <style>
+    div.stButton > button:first-child {
+        background-color: #FFDDC1;
+        color: #D84315;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+    }
+    div.stButton > button:first-child:hover {
+        background-color: #FFAB91;
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 if st.button("🤖 Your Personalized AI Diet Planner"):
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
@@ -161,3 +181,4 @@ if st.button("🤖 Your Personalized AI Diet Planner"):
 
         gemini_meal_plan = get_gemini_recommendation(prompt)
         st.write(gemini_meal_plan)
+
