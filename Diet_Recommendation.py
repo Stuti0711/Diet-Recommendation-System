@@ -147,6 +147,8 @@ def get_gemini_recommendation(prompt):
 # 🟢 AI-Powered Meal Plan Button
 
 # Custom CSS for centering the button
+
+# Custom CSS for centering the button
 st.markdown(
     """
     <style>
@@ -174,6 +176,13 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# Button Section (Properly Centered)
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 2, 1])  # Creates 3 columns, button in the center
+with col2:
+    clicked = st.button("Click here")
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Button Section (Properly Centered)
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
