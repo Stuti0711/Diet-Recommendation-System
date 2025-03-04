@@ -145,47 +145,29 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
+# 🟢 AI-Powered Meal Plan Button
 st.markdown(
     """
     <style>
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 15px;
-    }
-    .stButton>button {
-        background-color: white;
-        color: red;
-        border: 2px solid red;
-        border-radius: 10px;
+    div.stButton > button:first-child {
+        background-color: #FFDDC1;
+        color: #D84315;
+        font-size: 18px;
+        font-weight: bold;
         padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
+        border-radius: 10px;
+        border: none;
     }
-    .stButton>button:hover {
-        background-color: #FFD1C1;
-        color: black;
+    div.stButton > button:first-child:hover {
+        background-color: #FFAB91;
+        color: white;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section
-st.markdown(
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
-    '</div>',
-    unsafe_allow_html=True
-)
-
-# Centering the Button
-st.markdown('<div class="container">', unsafe_allow_html=True)
-clicked = st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
-
+if st.button("🤖 Your Personalized AI Diet Planner"):
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     else:
@@ -200,4 +182,3 @@ st.markdown('</div>', unsafe_allow_html=True)
 
         gemini_meal_plan = get_gemini_recommendation(prompt)
         st.write(gemini_meal_plan)
-
