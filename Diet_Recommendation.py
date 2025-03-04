@@ -164,7 +164,7 @@ st.markdown(
 )
 
 
-if st.button("🤖 Your Personalized AI Diet Planner"):
+if st.button("🤖Click here"):
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     else:
