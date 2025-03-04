@@ -145,22 +145,42 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
+
+# Custom CSS for centering the button
 st.markdown(
     """
-    <div style="
-        background-color: #FFDDC1; 
-        color: #D84315; 
-        padding: 10px; 
+    <style>
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px; /* Adjust space between button and other elements */
+    }
+    .stButton>button {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
         border-radius: 10px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;">
-        🤖 Your Personalized AI Diet Planner
-    </div>
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .stButton>button:hover {
+        background-color: #FFD1C1;
+        color: black;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
 
+# Button Section (Properly Centered)
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 2, 1])  # Creates 3 columns, button in the center
+with col2:
+    clicked = st.button("Click here")
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # Button Section (Centered with Spacing)
