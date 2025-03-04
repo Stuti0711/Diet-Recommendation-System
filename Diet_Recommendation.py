@@ -149,16 +149,16 @@ def get_gemini_recommendation(prompt):
 # Custom CSS for centering the button
 
 # Custom CSS for centering the button
-# Custom CSS for centering the button
+import streamlit as st
 
-# Custom CSS for centering the button
+# Custom CSS for Centering the Button
 st.markdown(
     """
     <style>
     .button-container {
         display: flex;
         justify-content: center; /* Centers horizontally */
-        margin-top: 20px; /* Adds space above the button */
+        margin-top: 20px; /* Space above the button */
     }
     .stButton>button {
         background-color: white;
@@ -179,14 +179,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-# Header Section
+# Centered Header
 st.markdown(
     '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🍽️ <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '<h4>🍎 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
+
+# Centered Button
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+st.button("Click here")
+st.markdown('</div>', unsafe_allow_html=True)
+
 
 # Centering the Button
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
