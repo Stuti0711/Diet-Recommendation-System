@@ -168,12 +168,6 @@ st.markdown('<div class="button-container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# Ensure gender and food preference are selected before proceeding
-gender = st.selectbox("Select Gender", ["Select an option", "Male", "Female"])
-food_pref = st.selectbox("Select Food Preference", ["Select an option", "Vegetarian", "Non-Vegetarian", "Vegan"])
-weight = st.number_input("Enter Weight (kg)", min_value=1)
-height = st.number_input("Enter Height (cm)", min_value=1)
-
 if clicked:
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
