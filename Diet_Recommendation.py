@@ -145,51 +145,22 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
-import streamlit as st
-
-# Custom CSS for centering the button and adding spacing
 st.markdown(
     """
-    <style>
-    .header-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px; /* Space between header and button */
-    }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px; /* Space between button and next section */
-    }
-    .stButton>button {
-        background-color: white;
-        color: red;
-        border: 2px solid red;
+    <div style="
+        background-color: #FFDDC1; 
+        color: #D84315; 
+        padding: 10px; 
         border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    .stButton>button:hover {
-        background-color: #FFD1C1;
-        color: black;
-    }
-    </style>
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;">
+        🤖 Your Personalized AI Diet Planner
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section (Centered)
-st.markdown(
-    '<div class="header-container">'
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px; width: 70%;">'
-    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
-    '</div>'
-    '</div>',
-    unsafe_allow_html=True
 )
 
 # Button Section (Centered with Spacing)
