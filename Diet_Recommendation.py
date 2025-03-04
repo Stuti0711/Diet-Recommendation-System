@@ -145,9 +145,6 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
-import streamlit as st
-
-# Custom CSS for centering the button
 st.markdown(
     """
     <style>
@@ -155,8 +152,7 @@ st.markdown(
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 50px; /* Adjust height as needed */
-        margin-top: 10px;
+        margin-top: 15px;
     }
     .stButton>button {
         background-color: white;
@@ -166,6 +162,11 @@ st.markdown(
         padding: 10px 20px;
         font-size: 16px;
         cursor: pointer;
+        transition: 0.3s;
+    }
+    .stButton>button:hover {
+        background-color: #FFD1C1;
+        color: black;
     }
     </style>
     """,
@@ -180,13 +181,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Centered Button Section
+# Centering the Button
 st.markdown('<div class="container">', unsafe_allow_html=True)
-if st.button("Click here"):
-    st.success("Button Clicked!")
+clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
-
-
 
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
