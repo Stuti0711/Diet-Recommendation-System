@@ -149,14 +149,15 @@ def get_gemini_recommendation(prompt):
 # Custom CSS for centering the button
 
 # Custom CSS for centering the button
+# Custom CSS for centering the button
 st.markdown(
     """
     <style>
-    .button-container {
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 20px; /* Adjust space between button and other elements */
+        margin-top: 15px;
     }
     .stButton>button {
         background-color: white;
@@ -177,25 +178,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Button Section (Properly Centered)
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1, 2, 1])  # Creates 3 columns, button in the center
-with col2:
-    clicked = st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
+# Header Section
+st.markdown(
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '</div>',
+    unsafe_allow_html=True
+)
 
-# Button Section (Properly Centered)
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1, 2, 1])  # Creates 3 columns, button in the center
-with col2:
-    clicked = st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-# Button Section (Centered with Spacing)
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
+# Centering the Button
+st.markdown('<div class="container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 if clicked:
     if gender == "Select an option" or food_pref == "Select an option":
