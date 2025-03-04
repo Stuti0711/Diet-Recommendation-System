@@ -62,7 +62,7 @@ gender = st.selectbox("Select Gender:", ["Select gender", "Male", "Female"], ind
 weight = st.number_input("Enter Weight (kg):", min_value=25.0, max_value=200.0, value=None, key="weight", placeholder="Enter weight")
 
 # Height input with unit selection
-height_unit = st.selectbox("Select Height Unit:", ["Centimeters", "Feet & Inches"], key="height_unit")
+height_unit = st.selectbox("Select Height Unit:", ["Select Height Unit","Centimeters", "Feet & Inches"], key="height_unit")
 
 if height_unit == "Centimeters":
     height = st.number_input("Enter Height (cm):", min_value=50.0, max_value=250.0, value=None, key="height_cm", placeholder="Enter height")
