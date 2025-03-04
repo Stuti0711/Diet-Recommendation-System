@@ -145,7 +145,6 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
-# 🟢 AI-Powered Meal Plan Button
 import streamlit as st
 
 # Custom CSS for centering the button and adding spacing
@@ -198,6 +197,17 @@ st.markdown('<div class="button-container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
 
+# Ensure gender and food preference are selected before proceeding
+gender = st.selectbox("Select Gender", ["Select an option", "Male", "Female"])
+food_pref = st.selectbox("Select Food Preference", ["Select an option", "Vegetarian", "Non-Vegetarian", "Vegan"])
+weight = st.number_input("Enter Weight (kg)", min_value=1)
+height = st.number_input("Enter Height (cm)", min_value=1)
+
+if clicked:
+    if gender == "Select an option" or food_pref == "Select an option":
+        st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
+    else:
+        st.subheader("🥗 Your AI-Generated Meal Plan")
 
         prompt = f"""
         I am a {gender} with a weight of {weight} kg and height of {height} cm.
@@ -206,5 +216,7 @@ st.markdown('</div>', unsafe_allow_html=True)
         Suggest a meal plan with breakfast, lunch, and dinner that matches my dietary needs.
         """
 
+        # Call Gemini AI for meal recommendations
         gemini_meal_plan = get_gemini_recommendation(prompt)
         st.write(gemini_meal_plan)
+
