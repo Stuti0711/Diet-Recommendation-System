@@ -128,13 +128,13 @@ if st.button("Get Recommendation"):
             st.warning(f"### Your BMI: {bmi:.2f} ({bmi_category}) ⚠️ Consider adjustments.")
 
         # 🔹 Filter Food Recommendations
-       for meal in ["Breakfast", "Lunch", "Dinner"]:
-           st.subheader(f"🍽 {meal} Recommendations")
-           meal_data = merged_data[(merged_data['Meal_Type'] == meal) & (merged_data['Category'] == food_pref)]
-           if not meal_data.empty:
-               st.table(meal_data.sample(n=min(3, len(meal_data))).reset_index(drop=True)[['Food_items', 'Calories', 'Fats', 'Proteins', 'Carbohydrates']])
-           else:
-               st.warning(f"No recommendations found for {meal} with your selected preference.")
+        for meal in ["Breakfast", "Lunch", "Dinner"]:
+            st.subheader(f"🍽 {meal} Recommendations")
+            meal_data = merged_data[(merged_data['Meal_Type'] == meal) & (merged_data['Category'] == food_pref)]
+            if not meal_data.empty:
+                st.table(meal_data.sample(n=min(3, len(meal_data))).reset_index(drop=True)[['Food_items', 'Calories', 'Fats', 'Proteins', 'Carbohydrates']])
+            else:
+                st.warning(f"No recommendations found for {meal} with your selected preference.")
 
 
 
