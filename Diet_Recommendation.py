@@ -153,7 +153,7 @@ def get_gemini_recommendation(prompt):
 st.markdown(
     """
     <style>
-    .container {
+    .button-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -187,7 +187,7 @@ st.markdown(
 )
 
 # Centering the Button
-st.markdown('<div class="container">', unsafe_allow_html=True)
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
 
