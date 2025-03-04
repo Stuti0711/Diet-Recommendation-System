@@ -145,21 +145,27 @@ def get_gemini_recommendation(prompt):
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
+
+
 st.markdown(
     """
-    <div style="
-        background-color: #FFDDC1; 
-        color: #D84315; 
-        padding: 10px; 
-        border-radius: 10px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 18px;">
-        🤖 Your Personalized AI Diet Planner
-    </div>
+    <style>
+    .centered-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    </style>
     """,
     unsafe_allow_html=True
 )
+
+st.markdown('<div class="centered-button">', unsafe_allow_html=True)
+if st.button("Click here"):
+    st.success("Button Clicked!")
+st.markdown("</div>", unsafe_allow_html=True)
+
 
 if st.button("Click here"):
     if gender == "Select an option" or food_pref == "Select an option":
