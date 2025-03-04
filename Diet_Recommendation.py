@@ -69,6 +69,9 @@ else:
     height_feet = st.number_input("Feet:", min_value=1, max_value=8, value=None, key="height_feet", placeholder="Feet")
     height_inches = st.number_input("Inches:", min_value=0, max_value=11, value=None, key="height_inches", placeholder="Inches")
     height = (height_feet * 30.48) + (height_inches * 2.54) if height_feet and height_inches else None
+# Food preference selection (Default = "Select an option")
+food_pref = st.radio("Food Preference:", ["Select an option", "Veg", "Non-Veg"], index=0, key="food_pref")
+
 
 # 🔹 Function to calculate BMI category
 def calculate_bmi_category(bmi, gender):
@@ -108,8 +111,8 @@ def calculate_bmi_category(bmi, gender):
 if st.button("Get Recommendation"):
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
-    elif height == 0:
-        st.error("⚠️ Height cannot be zero!")
+    elif height is None or weight is None:
+        st.error("⚠️ Please enter a valid height and weight!")
     else:
         # Calculate BMI
         bmi = weight / ((height / 100) ** 2)
