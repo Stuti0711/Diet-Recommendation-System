@@ -150,14 +150,15 @@ def get_gemini_recommendation(prompt):
 
 # Custom CSS for centering the button
 # Custom CSS for centering the button
+
+# Custom CSS for centering the button
 st.markdown(
     """
     <style>
     .button-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 15px;
+        justify-content: center; /* Centers horizontally */
+        margin-top: 20px; /* Adds space above the button */
     }
     .stButton>button {
         background-color: white;
@@ -177,6 +178,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 # Header Section
 st.markdown(
