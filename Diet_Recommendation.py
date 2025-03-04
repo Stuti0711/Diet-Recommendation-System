@@ -65,7 +65,7 @@ weight = st.number_input("Enter Weight (kg):", min_value=00.0, max_value=00.0, k
 height_unit = st.selectbox("Select Height Unit:", ["Centimeters", "Feet & Inches"], key="height_unit")
 
 if height_unit == "Centimeters":
-    height = st.number_input("Enter Height (cm):", min_value=50.0, max_value=250.0, key="height_cm")
+    height = st.number_input("Enter Height (cm):", min_value=00.0, max_value=00.0, key="height_cm")
 else:
     height_feet = st.number_input("Feet:", min_value=1, max_value=8, key="height_feet")
     height_inches = st.number_input("Inches:", min_value=0, max_value=11, key="height_inches")
