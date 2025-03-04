@@ -147,21 +147,16 @@ def get_gemini_recommendation(prompt):
 # 🟢 AI-Powered Meal Plan Button
 st.markdown(
     """
-    <style>
-    div.stButton > button:first-child {
-        background-color: #FFDDC1;
-        color: #D84315;
-        font-size: 18px;
-        font-weight: bold;
-        padding: 10px 20px;
+    <div style="
+        background-color: #FFDDC1; 
+        color: #D84315; 
+        padding: 10px; 
         border-radius: 10px;
-        border: none;
-    }
-    div.stButton > button:first-child:hover {
-        background-color: #FFAB91;
-        color: white;
-    }
-    </style>
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;">
+        🤖 Your Personalized AI Diet Planner
+    </div>
     """,
     unsafe_allow_html=True
 )
