@@ -182,7 +182,7 @@ st.markdown(
 # Header Section
 st.markdown(
     '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '<h4>🍽️ <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
