@@ -161,7 +161,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-)
+
 
 # Button Section (Centered with Spacing)
 st.markdown('<div class="button-container">', unsafe_allow_html=True)
