@@ -146,25 +146,39 @@ def get_gemini_recommendation(prompt):
 
 # 🟢 AI-Powered Meal Plan Button
 
+import streamlit as st
 
+# Center AI Avatar and Make it Clickable
 st.markdown(
     """
     <style>
-    .centered-button {
+    .centered-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown('<div class="centered-button">', unsafe_allow_html=True)
-if st.button("Click here"):
-    st.success("Button Clicked!")
+st.markdown('<div class="centered-container">', unsafe_allow_html=True)
+
+# Load AI Avatar Image (Replace 'ai_avatar.png' with your image path)
+ai_avatar_path = "ai_avatar.png"  # Ensure this image is in the same directory
+
+if st.button("🔮 Generate AI Meal Plan"):  # Hidden text-based trigger
+    st.subheader("🤖 Your AI Diet Planner is Generating...")
+
+st.markdown(
+    f'<a href="#" onclick="document.querySelector(\'button\').click();">'
+    f'<img src="{ai_avatar_path}" width="120"></a>',
+    unsafe_allow_html=True
+)
+
 st.markdown("</div>", unsafe_allow_html=True)
+
+
 
 
 if st.button("Click here"):
