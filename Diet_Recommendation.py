@@ -55,7 +55,7 @@ st.title("🥗 Diet Recommendation System")
 
 
 # Gender selection (Default = "Select an option")
-gender = st.selectbox("Select Gender:", ["", "Male", "Female"], index=0, key="gender")
+gender = st.selectbox("Select Gender:", ["Select gender", "Male", "Female"], index=0, key="gender")
 
 
 # Weight input (No default value)
