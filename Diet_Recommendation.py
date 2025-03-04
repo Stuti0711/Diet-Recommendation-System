@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -149,16 +150,15 @@ def get_gemini_recommendation(prompt):
 # Custom CSS for centering the button
 
 # Custom CSS for centering the button
-import streamlit as st
-
-# Custom CSS for Centering the Button
+# Custom CSS for centering the button
 st.markdown(
     """
     <style>
-    .button-container {
+    .container {
         display: flex;
-        justify-content: center; /* Centers horizontally */
-        margin-top: 20px; /* Space above the button */
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
     }
     .stButton>button {
         background-color: white;
@@ -179,22 +179,16 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Centered Header
+# Header Section
 st.markdown(
     '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🍎 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# Centered Button
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
-
-
 # Centering the Button
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
+st.markdown('<div class="container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -215,4 +209,3 @@ if clicked:
         # Call Gemini AI for meal recommendations
         gemini_meal_plan = get_gemini_recommendation(prompt)
         st.write(gemini_meal_plan)
-
