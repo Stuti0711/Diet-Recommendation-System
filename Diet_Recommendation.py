@@ -64,14 +64,11 @@ weight = st.number_input("Enter Weight (kg):", min_value=25.0, max_value=200.0, 
 height_unit = st.selectbox("Select Height Unit:", ["Centimeters", "Feet & Inches"], key="height_unit")
 
 if height_unit == "Centimeters":
-    height = st.number_input("Enter Height (cm):", min_value=00.0, max_value=300.0, key="height_cm")
+    height = st.number_input("Enter Height (cm):", min_value=50.0, max_value=250.0, value=None, key="height_cm", placeholder="Enter height")
 else:
-    height_feet = st.number_input("Feet:", min_value=1, max_value=8, key="height_feet")
-    height_inches = st.number_input("Inches:", min_value=0, max_value=11, key="height_inches")
-    height = (height_feet * 30.48) + (height_inches * 2.54)
-# Food preference selection (Default = "Select an option")
-food_pref = st.radio("Food Preference:", ["Veg", "Non-Veg"], index=0, key="food_pref")
-
+    height_feet = st.number_input("Feet:", min_value=1, max_value=8, value=None, key="height_feet", placeholder="Feet")
+    height_inches = st.number_input("Inches:", min_value=0, max_value=11, value=None, key="height_inches", placeholder="Inches")
+    height = (height_feet * 30.48) + (height_inches * 2.54) if height_feet and height_inches else None
 
 # 🔹 Function to calculate BMI category
 def calculate_bmi_category(bmi, gender):
