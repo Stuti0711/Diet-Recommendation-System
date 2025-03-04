@@ -58,8 +58,7 @@ st.title("🥗 Diet Recommendation System")
 gender = st.selectbox("Select Gender:", ["Male", "Female"], index=0, key="gender")
 
 # Weight input (No default value)
-weight = st.number_input("Enter Weight (kg):", min_value=00.0, max_value=200.0, key="weight")
-
+weight = st.number_input("Enter Weight (kg):", min_value=25.0, max_value=200.0, value=None, key="weight", placeholder="Enter weight")
 
 # Height input with unit selection
 height_unit = st.selectbox("Select Height Unit:", ["Centimeters", "Feet & Inches"], key="height_unit")
