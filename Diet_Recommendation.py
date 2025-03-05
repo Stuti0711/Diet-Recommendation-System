@@ -157,56 +157,77 @@ import streamlit as st
 import streamlit as st
 
 # Custom CSS and JavaScript to make the header a clickable button
+import streamlit as st
+
+# Custom CSS for Styling the Header as a Button
 st.markdown(
     """
     <style>
-    .container {
+    .header-button {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
-    }
-    .stButton>button {
-        background-color: white;
-        color: red;
-        border: 2px solid red;
+        background-color: #FFE0CC;
+        padding: 15px;
+        text-align: center;
         border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
+        width: 70%;
         cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        color: #D9534F;
+        text-decoration: none;
         transition: 0.3s;
     }
-    .stButton>button:hover {
-        background-color: #FFD1C1;
-        color: black;
+    .header-button:hover {
+        background-color: #FFC4A3;
+    }
+    .header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section
+# JavaScript to trigger a hidden Streamlit button
 st.markdown(
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    """
+    <script>
+    function triggerAction() {
+        var click_event = new Event("click");
+        document.dispatchEvent(click_event);
+    }
+    </script>
+    """,
+    unsafe_allow_html=True
+)
+
+# Clickable Header Button
+st.markdown(
+    '<div class="header-container">'
+    '<a href="#" class="header-button" onclick="triggerAction()">🍽️ Your Personalized AI Diet Planner</a>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# Centering the Button
-st.markdown('<div class="container">', unsafe_allow_html=True)
-clicked = st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
+# Hidden Streamlit Button
+if st.button("Hidden Click"):
+    st.session_state["button_clicked"] = True
 
+# Handle Button Click
+if st.session_state.get("button_clicked", False):
+    gender = st.selectbox("Select your Gender", ["Select an option", "Male", "Female"])
+    food_pref = st.selectbox("Select your Food Preference", ["Select an option", "Vegetarian", "Non-Vegetarian", "Vegan"])
 
-
-
-
-if clicked:
     if gender == "Select an option" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     else:
         st.subheader("🥗 Your AI-Generated Meal Plan")
+
 
         prompt = f"""
         I am a {gender} with a weight of {weight} kg and height of {height} cm.
