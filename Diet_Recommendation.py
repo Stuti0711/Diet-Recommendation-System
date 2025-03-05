@@ -163,56 +163,50 @@ import streamlit as st
 st.markdown(
     """
     <style>
-    .header-button {
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #FFE0CC;
-        padding: 15px;
-        text-align: center;
+        margin-top: 15px;
+    }
+    .stButton>button {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
         border-radius: 10px;
-        width: 70%;
+        padding: 10px 20px;
+        font-size: 16px;
         cursor: pointer;
-        font-size: 18px;
-        font-weight: bold;
-        color: #D9534F;
-        text-decoration: none;
         transition: 0.3s;
     }
-    .header-button:hover {
-        background-color: #FFC4A3;
-    }
-    .header-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
+    .stButton>button:hover {
+        background-color: #FFD1C1;
+        color: black;
     }
     </style>
-    <script>
-    function triggerAction() {
-        fetch("/_stcore/handle_event", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "event": "button_click" })
-        }).then(() => {
-            window.location.reload();
-        });
-    }
-    </script>
     """,
     unsafe_allow_html=True
 )
 
-# Clickable Header Button
+# Header Section
 st.markdown(
-    '<div class="header-container">'
-    '<a href="#" class="header-button" onclick="triggerAction()">🍽️ Your Personalized AI Diet Planner</a>'
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
 
+# Centering the Button
+st.markdown('<div class="container">', unsafe_allow_html=True)
+clicked = st.button("Click here")
+st.markdown('</div>', unsafe_allow_html=True)
 
+
+if clicked:
+    if gender == "Select an option" or food_pref == "Select an option":
+        st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
+    else:
+        st.subheader("🥗 Your AI-Generated Meal Plan")
         prompt = f"""
         I am a {gender} with a weight of {weight} kg and height of {height} cm.
         My BMI is {weight / ((height / 100) ** 2):.2f}, and I am categorized as {calculate_bmi_category(weight / ((height / 100) ** 2), gender)}.
