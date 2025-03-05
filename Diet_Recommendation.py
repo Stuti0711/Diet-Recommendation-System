@@ -154,6 +154,9 @@ import streamlit as st
 import streamlit as st
 
 # Custom CSS for Styling the Header as a Button
+import streamlit as st
+
+# Custom CSS and JavaScript to make the header a clickable button
 st.markdown(
     """
     <style>
@@ -183,19 +186,31 @@ st.markdown(
         margin-top: 20px;
     }
     </style>
+    
+    <script>
+    function triggerAction() {
+        var click_event = new Event("click");
+        document.dispatchEvent(click_event);
+    }
+    </script>
     """,
     unsafe_allow_html=True
 )
 
-# Header Button
+# Header as a Clickable Button
 st.markdown(
     '<div class="header-container">'
-    '<a href="#" class="header-button">🍽️ Your Personalized AI Diet Planner</a>'
+    '<a href="#" class="header-button" onclick="triggerAction()">🍽️ Your Personalized AI Diet Planner</a>'
     '</div>',
     unsafe_allow_html=True
 )
 
+# Handling the action when the button is clicked
+if st.session_state.get("button_clicked", False):
+    st.write("You clicked the diet planner button!")
 
+if st.button("Hidden Click"):
+    st.session_state["button_clicked"] = Tr
 
 
 
