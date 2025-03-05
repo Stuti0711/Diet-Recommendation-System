@@ -72,7 +72,11 @@ else:
     height_inches = st.number_input("Inches:", min_value=0, max_value=11, value=None, key="height_inches", placeholder="Inches")
     height = (height_feet * 30.48) + (height_inches * 2.54) if height_feet and height_inches else None
 # Food preference selection (Default = "Select an option")
-food_pref = st.radio("Food Preference:", [ "Veg", "Non-Veg"], index=0, key="food_pref")
+food_pref = st.radio("Food Preference:", ["Veg", "Non-Veg", "Mix"], index=0, key="food_pref")
+if food_pref == "Mix":
+    filtered_food_data = merged_data  # Show all food items
+else:
+    filtered_food_data = merged_data[merged_data["Category"] == food_pref]  # Show based on selection
 
 
 # 🔹 Function to calculate BMI category
