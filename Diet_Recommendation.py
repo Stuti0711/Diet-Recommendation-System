@@ -154,17 +154,11 @@ import streamlit as st
 st.markdown(
     """
     <style>
-    .header-container {
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 20px; /* Space between header and button */
-    }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px; /* Space above button */
+        margin-top: 15px;
     }
     .stButton>button {
         background-color: white;
@@ -185,20 +179,20 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Centered Header with Food Emoji
+# Header Section
 st.markdown(
-    '<div class="header-container">'
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px; width: 70%;">'
-    '<h4>🍽️ <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
-    '</div>'
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# Centered Button
-st.markdown('<div class="button-container">', unsafe_allow_html=True)
-st.button("Click here")
+# Centering the Button
+st.markdown('<div class="container">', unsafe_allow_html=True)
+clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
+
+
 
 
 
