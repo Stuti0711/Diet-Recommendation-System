@@ -148,17 +148,23 @@ def get_gemini_recommendation(prompt):
 # 🟢 AI-Powered Meal Plan Button
 
 # Custom CSS for centering the button
+import streamlit as st
 
-# Custom CSS for centering the button
-# Custom CSS for centering the button
+# Custom CSS for Centering the Button
 st.markdown(
     """
     <style>
-    .container {
+    .header-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
+        margin-bottom: 20px; /* Space between header and button */
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px; /* Space above button */
     }
     .stButton>button {
         background-color: white;
@@ -179,18 +185,22 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Header Section
+# Centered Header with Food Emoji
 st.markdown(
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<div class="header-container">'
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px; width: 70%;">'
     '<h4>🍽️ <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '</div>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# Centering the Button
-st.markdown('<div class="container">', unsafe_allow_html=True)
-clicked = st.button("Click here")
+# Centered Button
+st.markdown('<div class="button-container">', unsafe_allow_html=True)
+st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
+
+
 
 
 if clicked:
