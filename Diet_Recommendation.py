@@ -160,57 +160,44 @@ import streamlit as st
 st.markdown(
     """
     <style>
-    .header-button {
+    .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #FFE0CC;
-        padding: 15px;
-        text-align: center;
+        margin-top: 15px;
+    }
+    .stButton>button {
+        background-color: white;
+        color: red;
+        border: 2px solid red;
         border-radius: 10px;
-        width: 70%;
+        padding: 10px 20px;
+        font-size: 16px;
         cursor: pointer;
-        font-size: 18px;
-        font-weight: bold;
-        color: #D9534F;
-        text-decoration: none;
         transition: 0.3s;
     }
-    .header-button:hover {
-        background-color: #FFC4A3;
-    }
-    .header-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
+    .stButton>button:hover {
+        background-color: #FFD1C1;
+        color: black;
     }
     </style>
-    
-    <script>
-    function triggerAction() {
-        var click_event = new Event("click");
-        document.dispatchEvent(click_event);
-    }
-    </script>
     """,
     unsafe_allow_html=True
 )
 
-# Header as a Clickable Button
+# Header Section
 st.markdown(
-    '<div class="header-container">'
-    '<a href="#" class="header-button" onclick="triggerAction()">🍽️ Your Personalized AI Diet Planner</a>'
+    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
+    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
     '</div>',
     unsafe_allow_html=True
 )
 
-# Handling the action when the button is clicked
-if st.session_state.get("button_clicked", False):
-    st.write("You clicked the diet planner button!")
+# Centering the Button
+st.markdown('<div class="container">', unsafe_allow_html=True)
+clicked = st.button("Click here")
+st.markdown('</div>', unsafe_allow_html=True)
 
-if st.button("Hidden Click"):
-    st.session_state["button_clicked"] = Tr
 
 
 
