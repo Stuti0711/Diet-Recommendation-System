@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -72,14 +71,12 @@ else:
     height_inches = st.number_input("Inches:", min_value=0, max_value=11, value=None, key="height_inches", placeholder="Inches")
     height = (height_feet * 30.48) + (height_inches * 2.54) if height_feet and height_inches else None
 # Food preference selection (Default = "Select an option")
-# Food preference selection
 food_pref = st.radio("Food Preference:", ["Veg", "Non-Veg", "Mix"], index=0, key="food_pref")
-
-# Filter data based on preference
 if food_pref == "Mix":
     filtered_food_data = merged_data  # Show all food items
 else:
-    filtered_food_data = merged_data.loc[merged_data["Category"].str.lower() == food_pref.lower()]
+    filtered_food_data = merged_data[merged_data["Category"] == food_pref]  # Show based on selection
+
 
 # 🔹 Function to calculate BMI category
 def calculate_bmi_category(bmi, gender):
@@ -88,7 +85,7 @@ def calculate_bmi_category(bmi, gender):
             return "Severely Underweight"
         elif 17 <= bmi < 20:
             return "Underweight"
-        elif 20 <= bmi < 26:1
+        elif 20 <= bmi < 26:
             return "Healthy"
         elif 26 <= bmi < 31:
             return "Overweight"
