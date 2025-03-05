@@ -77,6 +77,17 @@ if food_pref == "Mix":
     filtered_food_data = merged_data  # Show all food items
 else:
     filtered_food_data = merged_data[merged_data["Category"] == food_pref]  # Show based on selection
+if "Category" not in merged_data.columns:
+    def assign_veg_nonveg(food_item):
+        food_item = str(food_item).lower()
+        if any(word in food_item for word in ["chicken", "fish", "beef", "mutton", "egg", "prawn"]):
+            return "Non-Veg"
+        return "Veg"
+    
+    merged_data["Category"] = merged_data["Food_items"].apply(assign_veg_nonveg)
+
+# Ensure consistent formatting
+merged_data["Category"] = merged_data["Category"].str.title()  # 'veg' → 'Veg', 'non-veg' → 'Non-Veg'
 
 
 # 🔹 Function to calculate BMI category
@@ -152,16 +163,7 @@ def get_gemini_recommendation(prompt):
 # 🟢 AI-Powered Meal Plan Button
 
 # Custom CSS for centering the button
-import streamlit as st
 
-# Custom CSS for Centering the Button
-import streamlit as st
-
-# Custom CSS for Styling the Header as a Button
-import streamlit as st
-
-# Custom CSS and JavaScript to make the header a clickable button
-import streamlit as st
 
 # Custom CSS for Styling the Header as a Button
 st.markdown(
