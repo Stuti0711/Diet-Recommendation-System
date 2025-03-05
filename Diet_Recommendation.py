@@ -189,17 +189,15 @@ st.markdown(
         margin-top: 20px;
     }
     </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# JavaScript to trigger a hidden Streamlit button
-st.markdown(
-    """
     <script>
     function triggerAction() {
-        var click_event = new Event("click");
-        document.dispatchEvent(click_event);
+        fetch("/_stcore/handle_event", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ "event": "button_click" })
+        }).then(() => {
+            window.location.reload();
+        });
     }
     </script>
     """,
@@ -213,20 +211,6 @@ st.markdown(
     '</div>',
     unsafe_allow_html=True
 )
-
-# Hidden Streamlit Button
-if st.button("Hidden Click"):
-    st.session_state["button_clicked"] = True
-
-# Handle Button Click
-if st.session_state.get("button_clicked", False):
-    gender = st.selectbox("Select your Gender", ["Select an option", "Male", "Female"])
-    food_pref = st.selectbox("Select your Food Preference", ["Select an option", "Vegetarian", "Non-Vegetarian", "Vegan"])
-
-    if gender == "Select an option" or food_pref == "Select an option":
-        st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
-    else:
-        st.subheader("🥗 Your AI-Generated Meal Plan")
 
 
         prompt = f"""
