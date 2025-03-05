@@ -151,46 +151,49 @@ def get_gemini_recommendation(prompt):
 import streamlit as st
 
 # Custom CSS for Centering the Button
+import streamlit as st
+
+# Custom CSS for Styling the Header as a Button
 st.markdown(
     """
     <style>
-    .container {
+    .header-button {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 15px;
-    }
-    .stButton>button {
-        background-color: white;
-        color: red;
-        border: 2px solid red;
+        background-color: #FFE0CC;
+        padding: 15px;
+        text-align: center;
         border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
+        width: 70%;
         cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        color: #D9534F;
+        text-decoration: none;
         transition: 0.3s;
     }
-    .stButton>button:hover {
-        background-color: #FFD1C1;
-        color: black;
+    .header-button:hover {
+        background-color: #FFC4A3;
+    }
+    .header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Header Section
+# Header Button
 st.markdown(
-    '<div style="background-color: #FFE0CC; padding: 10px; text-align: center; border-radius: 10px;">'
-    '<h4>🤖 <span style="color: #D9534F;">Your Personalized AI Diet Planner</span></h4>'
+    '<div class="header-container">'
+    '<a href="#" class="header-button">🍽️ Your Personalized AI Diet Planner</a>'
     '</div>',
     unsafe_allow_html=True
 )
-
-# Centering the Button
-st.markdown('<div class="container">', unsafe_allow_html=True)
-clicked = st.button("Click here")
-st.markdown('</div>', unsafe_allow_html=True)
 
 
 
