@@ -4,8 +4,9 @@ import streamlit as st
 import google.generativeai as genai
 import os
 
+API KEY = 'AIzaSyD4EdGIVgtC-hSNHPk7yzUJH45KnEqsC6w'
 # 🔹 Configure Google Gemini AI
-genai.configure(api_key= os.getenv('AIzaSyD4EdGIVgtC-hSNHPk7yzUJH45KnEqsC6w'))
+genai.configure(api_key= os.getenv('API KEY'))
 
 # 🔹 Load datasets
 food_data = pd.read_csv('food.csv')
