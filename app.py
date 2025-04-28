@@ -5,7 +5,7 @@ import google.generativeai as genai
 import os
 
 # 🔹 Configure Google Gemini AI
-genai.configure(api_key= os.getenv('API KEY'))
+genai.configure(api_key= os.getenv('AIzaSyC8LrL-0lkXz_1UUAUjO96gs0CIb5GZ8DI'))
 
 # 🔹 Load datasets
 food_data = pd.read_csv('food.csv')
