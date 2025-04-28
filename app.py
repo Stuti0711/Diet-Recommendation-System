@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import google.generativeai as genai
-import os
 
-# 🔹 Configure Google Gemini AI
-genai.configure(api_key= os.getenv('AIzaSyB-ElXfdeOgooWEJlFO-HB5tU45PnX1g8c'))
+# 🔹 Manually configure the API key
+api_key = "AIzaSyB-ElXfdeOgooWEJlFO-HB5tU45PnX1g8c"  # Replace with your actual Gemini API key
+genai.configure(api_key=api_key)
 
 # 🔹 Load datasets
 food_data = pd.read_csv('food.csv')
@@ -50,14 +50,11 @@ if 'Category' not in merged_data.columns:
     
     merged_data['Category'] = merged_data['Food_items'].apply(assign_veg_nonveg)
 
-
 # 🎨 **Streamlit UI**
 st.title("🥗 Diet Recommendation System")
 
-
-# Gender selection (Default = "Select an option")
+# Gender selection (Default = "Select gender")
 gender = st.selectbox("Select Gender:", ["Select gender", "Male", "Female"], index=0, key="gender")
-
 
 # Weight input (No default value)
 weight = st.number_input("Enter Weight (kg):", min_value=25.0, max_value=200.0, value=None, key="weight", placeholder="Enter weight")
@@ -70,14 +67,18 @@ if height_unit in ["Centimeters", "Select Unit"]:
 else:
     height_feet = st.number_input("Feet:", min_value=1, max_value=8, value=None, key="height_feet", placeholder="Feet")
     height_inches = st.number_input("Inches:", min_value=0, max_value=11, value=None, key="height_inches", placeholder="Inches")
-    height = (height_feet * 30.48) + (height_inches * 2.54) if height_feet and height_inches else None
+    if height_feet is not None and height_inches is not None:
+        height = (height_feet * 30.48) + (height_inches * 2.54)
+    else:
+        height = None
+
 # Food preference selection (Default = "Select an option")
 food_pref = st.radio("Food Preference:", ["Veg", "Non-Veg", "Mix"], index=0, key="food_pref")
+
 if food_pref == "Mix":
     filtered_food_data = merged_data  # Show all food items
 else:
     filtered_food_data = merged_data[merged_data["Category"] == food_pref]  # Show based on selection
-
 
 # 🔹 Function to calculate BMI category
 def calculate_bmi_category(bmi, gender):
@@ -115,7 +116,7 @@ def calculate_bmi_category(bmi, gender):
 
 # 🟢 **Button to get recommendation**
 if st.button("Get Recommendation"):
-    if gender == "Select an option" or food_pref == "Select an option":
+    if gender == "Select gender" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     elif height is None or weight is None:
         st.error("⚠️ Please enter a valid height and weight!")
@@ -135,26 +136,22 @@ if st.button("Get Recommendation"):
         # 🔹 Filter Food Recommendations
         for meal in ["Breakfast", "Lunch", "Dinner"]:
             st.subheader(f"🍽 {meal} Recommendations")
-            meal_data = merged_data[(merged_data['Meal_Type'] == meal) & (merged_data['Category'] == food_pref)]
+            if food_pref == "Mix":
+                meal_data = merged_data[(merged_data['Meal_Type'] == meal)]
+            else:
+                meal_data = merged_data[(merged_data['Meal_Type'] == meal) & (merged_data['Category'] == food_pref)]
             if not meal_data.empty:
                 st.table(meal_data.sample(n=min(3, len(meal_data))).reset_index(drop=True)[['Food_items', 'Calories', 'Fats', 'Proteins', 'Carbohydrates']])
             else:
                 st.warning(f"No recommendations found for {meal} with your selected preference.")
 
-
-
 # 🔮 **Gemini AI-Generated Meal Plan**
 def get_gemini_recommendation(prompt):
     model = genai.GenerativeModel("gemini-1.5-pro")  # Load Gemini model
-    response = model.generate_content(prompt)
+    response = model.generate_content(prompt, generation_config={"temperature": 0.7})
     return response.text if hasattr(response, "text") else response.candidates[0]['content']
 
 # 🟢 AI-Powered Meal Plan Button
-
-# Custom CSS for centering the button
-
-
-# Custom CSS for Styling the Header as a Button
 st.markdown(
     """
     <style>
@@ -196,9 +193,8 @@ st.markdown('<div class="container">', unsafe_allow_html=True)
 clicked = st.button("Click here")
 st.markdown('</div>', unsafe_allow_html=True)
 
-
 if clicked:
-    if gender == "Select an option" or food_pref == "Select an option":
+    if gender == "Select gender" or food_pref == "Select an option":
         st.warning("⚠️ Please select your Gender and Food Preference before proceeding!")
     else:
         st.subheader("🥗 Your AI-Generated Meal Plan")
