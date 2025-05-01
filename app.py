@@ -4,7 +4,7 @@ import streamlit as st
 import google.generativeai as genai
 
 # 🔹 Manually configure the API key
-api_key = "AIzaSyB-ElXfdeOgooWEJlFO-HB5tU45PnX1g8c"  # Replace with your actual Gemini API key
+api_key = "GEMINI API KEY"  # Replace with your actual Gemini API key
 genai.configure(api_key=api_key)
 
 # 🔹 Load datasets
